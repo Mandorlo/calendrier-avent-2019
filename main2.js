@@ -67,12 +67,20 @@ $(document).ready(function($) {
     // get Anna's texts
     fetch("https://dl.dropboxusercontent.com/s/xkx2bjzkju8z5hn/textes-Anna.txt")
         .then(r => r.text()).then(r => {
-            // append past days texts
-            texts = parseTexts(r)
-            console.log('fetch res', texts);
+            parseTexts(r)
+            console.log('fetch res Anna', texts);
             appendTexts(texts)
         })
-        .catch(err => console.log('fetch err', err))
+        .catch(err => console.log('fetch err Anna', err))
+
+    // get Carlos's texts
+    fetch("https://dl.dropboxusercontent.com/s/0hdku06q46wua4x/textes-Carlo.txt")
+        .then(r => r.text()).then(r => {
+            parseTexts(r)
+            console.log('fetch res Carlo', texts);
+            appendTexts(texts)
+        })
+        .catch(err => console.log('fetch err Carlo', err))
 
 
 })
@@ -112,7 +120,6 @@ function showText(text_num) {
 }
 
 function parseTexts(str) {
-    let texts = [];
     lines = str.split("\n");
     let day_num = 0;
     for (line of lines) {
@@ -126,7 +133,6 @@ function parseTexts(str) {
             texts[day_num].text = (texts[day_num].text + "\n<br>" + line).trim()
         }
     }
-    return texts;
 }
 
 function touchstart(evt) {
