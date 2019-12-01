@@ -2,7 +2,7 @@
   "name": "calendrier-avent-2019",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
