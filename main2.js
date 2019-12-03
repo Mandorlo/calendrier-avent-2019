@@ -117,6 +117,18 @@ function showText(text_num) {
     if (texts[text_num].img) $('#day').css({'background': `url(${texts[text_num].img})`, 'background-size': 'cover'});
     else $('#day').css({'background': `rebeccapurple`});
     $('#day').show(200);
+
+    // fit text size
+    let content = $('#day_content');
+    let fs = parseInt(/\d+/g.exec(content.css('font-size'))[0]);
+    setTimeout(_ => {
+        console.log(content.height(), window.outerHeight)
+        while (content.height() > window.outerHeight && fs > 7) {
+            fs -= 2;
+            content.css({'font-size': fs+"px"})
+            console.log(content.height(), window.outerHeight)
+        }
+    }, 210)
 }
 
 function parseTexts(str) {
@@ -198,12 +210,6 @@ function getFingerPos(evt) {
     pos.x = evt.clientX? evt.clientX : evt.touches[0].clientX;
     pos.y = evt.clientY? evt.clientY : evt.touches[0].clientY;
     pos = pos.matrixTransform(svg.getScreenCTM().inverse());
-    if (window.matchMedia("(orientation: portrait)").matches) {
-        console.log('portrait');
-        let x = $(svg).height() - pos.x - status.circle.radius;
-        pos.x = pos.y;
-        pos.y = x;
-    }
     status.finger = pos;
     return pos;
 }
