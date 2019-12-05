@@ -1,13 +1,17 @@
 const fs = require('fs');
 
 let positions = []
+positions[25] = {
+    'top': 630,
+    'left': 607
+}
 
 let width = 1450;
 let height = 900;
 let margin = 20;
-let min_distance = 200; // minimum distance between points
+let min_distance = 170; // minimum distance between points
 
-for (let i = 1; i < 26; i++) {
+for (let i = 1; i < 25; i++) {
     let pos = {
         'top': Math.round(Math.random() * (height - 2 * margin) + margin),
         'left': Math.round(Math.random() * (width - 2 * margin) + margin),
