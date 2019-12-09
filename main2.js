@@ -114,7 +114,7 @@ function appendTexts(texts) {
 function showText(text_num) {
     console.log("show text", text_num);
     $('#day_content').html(texts[text_num].text);
-    if (texts[text_num].img) $('#day').css({'background': `url(${texts[text_num].img})`, 'background-size': 'cover'});
+    if (texts[text_num].img) $('#day').css({'background': `url(${texts[text_num].img})`, 'background-size': 'cover', 'background-position': 'center'});
     else $('#day').css({'background': `rebeccapurple`});
     $('#day').show(200);
 
