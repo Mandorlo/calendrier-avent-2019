@@ -113,9 +113,16 @@ function appendTexts(texts) {
 
 function showText(text_num) {
     console.log("show text", text_num);
+    // the text
     $('#day_content').html(texts[text_num].text);
+    
+    // the background
     if (texts[text_num].img) $('#day').css({'background': `url(${texts[text_num].img})`, 'background-size': 'cover', 'background-position': 'center'});
     else $('#day').css({'background': `rebeccapurple`});
+    
+    // the text color
+    if (texts[text_num].color) $('#day_content').css({'color': texts[text_num].color});
+    
     $('#day').show(200);
 
     // fit text size
@@ -141,6 +148,10 @@ function parseTexts(str) {
             texts[day_num] = {text: ""};
         } else if (/^http/.test(line)) {
             texts[day_num].img = line.trim();
+        } else if (/^(\#[0-9A-z]{3,6}|black|gray|color.+)$/i.test(line.trim())) {
+            let couleur = line.trim();
+            if (/^color/.test(line)) couleur = /^color\s*([^\s]+)/.exec(line.trim())[1];
+            texts[day_num].color = couleur;
         } else {
             texts[day_num].text = (texts[day_num].text + "\n<br>" + line).trim()
         }
